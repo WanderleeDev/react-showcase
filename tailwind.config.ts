@@ -15,6 +15,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@midudev/tailwind-animations")],
 };
 export default config;
