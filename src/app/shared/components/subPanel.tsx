@@ -1,3 +1,4 @@
+'use client'
 import myImage from "/public/static.webp";
 import { Panel } from "../interfaces/Panel.interface";
 

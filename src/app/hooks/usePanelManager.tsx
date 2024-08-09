@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useState } from "react";
 import { Panel } from "../shared/interfaces/Panel.interface";
 import numberRandom from "../shared/helpers/numberRandom";
@@ -11,26 +10,23 @@ interface ToastPanelConfig {
 }
 
 export function usePanelManager(quantityPanel: number) {
-  const listContentPanels: Panel[] = Array(quantityPanel || 16)
-    .fill("")
-    .map((_, i) => ({
-      id: i + 1,
-      isMark: false,
-    }));
+  const listContentPanels: Panel[] = Array.from(
+    { length: quantityPanel || 16 },
+    (_, i) => ({ id: i, isMark: false })
+  );
   const [panels, setPanel] = useState<Panel[]>(listContentPanels);
 
   function markPanel(id: number): void {
-    setPanel((prevPanel) => {
-      return prevPanel.map((panel) =>
-        panel.id !== id ? panel : { ...panel, isMark: !panel.isMark }
+    setPanel((prevPanels) => {
+      const newPanels = prevPanels.map((panel) =>
+        panel.id !== id ? panel : { ...panel, isMark: true }
       );
+      const totalPanelBroken = newPanels.filter((panel) => panel.isMark).length;
+
+      handleMessagePanel({ id, quantityPanel, totalPanelBroken });
+
+      return newPanels;
     });
-    const totalPanelBroken = panels.filter((panel) => panel.isMark).length;
-    
-    handleMessagePanel({ id, quantityPanel, totalPanelBroken });
-    console.log(panels);
-    console.log(totalPanelBroken);
-    
   }
 
   function markRandomPanels(max: number): void {
