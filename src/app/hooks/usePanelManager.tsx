@@ -20,15 +20,14 @@ export function usePanelManager(quantityPanel: number) {
   const [panels, setPanel] = useState<Panel[]>(listContentPanels);
 
   function markPanel(id: number): void {
-    const dataPanelUpdate = panels.map((panel) =>
-      panel.id !== id ? panel : { ...panel, isMark: true }
-    );
-    const totalPanelBroken = dataPanelUpdate.filter(
-      (panel) => panel.isMark
-    ).length;
-
-    setPanel(dataPanelUpdate);
+    setPanel((prevPanel) => {
+      return prevPanel.map((panel) =>
+        panel.id !== id ? panel : { ...panel, isMark: !panel.isMark }
+      );
+    });
+    const totalPanelBroken = panels.filter((panel) => panel.isMark).length;
     handleMessagePanel({ id, quantityPanel, totalPanelBroken });
+    console.log(panels);
   }
 
   function markRandomPanels(max: number): void {
@@ -58,7 +57,7 @@ export function usePanelManager(quantityPanel: number) {
     }
 
     if (totalPanelBroken === quantityPanel) {
-      toast.error(`Fail System : All panels are broken (${totalPanelBroken})`);
+      toast.error("Fail System : All panels are broken");
     }
   }
 
