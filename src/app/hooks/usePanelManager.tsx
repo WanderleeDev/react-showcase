@@ -26,8 +26,11 @@ export function usePanelManager(quantityPanel: number) {
       );
     });
     const totalPanelBroken = panels.filter((panel) => panel.isMark).length;
+    
     handleMessagePanel({ id, quantityPanel, totalPanelBroken });
     console.log(panels);
+    console.log(totalPanelBroken);
+    
   }
 
   function markRandomPanels(max: number): void {
