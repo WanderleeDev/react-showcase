@@ -1,29 +1,31 @@
-import { useState } from "react";
 import myImage from "/public/static.webp";
+import { Panel } from "../interfaces/Panel.interface";
 
 interface Props {
-  countInitial: number;
+  panel: Panel;
+  onBreakPanel: (id: number) => void;
 }
 
-export function SubPanel({ countInitial }: Partial<Props>) {
-  const [count, setCount] = useState(countInitial || 0);
+export function SubPanel({ panel, onBreakPanel }: Props) {
+  const { isMark } = panel;
 
-  function handleSubPanelClick(): void {
-    if (count === 1) return;
+  function handleClick({ id, isMark }: Panel): void {
+    if (isMark) return;
 
-    setCount((prev) => prev + 1);
+    onBreakPanel(id);
   }
 
   return (
     <div
-      onClick={handleSubPanelClick}
+      onClick={() => handleClick(panel)}
       className={`bg-transparent grid place-content-center overflow-hidden border-slate-400 border-[.1rem] relative select-none hover:opacity-50 transition-opacity ${
-        count === 2 ? "cursor-not-allowed" : "cursor-pointer"
+        isMark ? "cursor-not-allowed" : "cursor-pointer"
       }`}
     >
-      {count === 1 && (
+      {isMark && (
+        // eslint-disable-next-line @next/next/no-img-element
         <img
-          className="absolute inset-0 h-full w-full"
+          className="absolute inset-0 h-full w-full animate-fade-in animate-duration-200"
           src={myImage.src}
           alt="Descripción de la imagen"
         />

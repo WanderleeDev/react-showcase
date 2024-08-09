@@ -1,6 +1,8 @@
+'use client'
 import Image from "next/image";
 import reactIcon from "/public/react.svg";
 import VideoGrid from "./shared/components/videoGrid";
+import Title from "./shared/components/Typography/Title";
 
 export default function Home() {
   return (
@@ -9,9 +11,7 @@ export default function Home() {
     }}>
       <header className="mx-auto select-none">
         <Image className="size-28 md:size-36 xl:size-52 animate-rotate-360 animate-iteration-count-infinite animate-duration-[7s] justify-self-center content-center radial p-2 rounded-[50%] border-[#05253E] border-2 mx-auto" src={reactIcon} alt="react icon" />
-        <h1 className="text-3xl md:text-5xl xl:text-6xl text-center font-thin tracking-wider">
-          Mis proyectos react
-        </h1>
+        <Title title="Mis proyectos react"  />
       </header>
       <VideoGrid />
     </main>

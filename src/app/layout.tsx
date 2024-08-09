@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Saira_Stencil_One } from "next/font/google";
+import BackgroundCity from "./shared/components/backgroundCity";
 import "./globals.css";
-import city from "/public/city.webp";
-import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 const saira = Saira_Stencil_One({ subsets: ["latin"], weight: "400" });
@@ -20,8 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${saira.className} bg-[#05253E]`}>
-        <Image className="fixed left-0 h-full -z-10" src={city} alt="city" />
-        <Image className="fixed right-0 h-full -z-10" src={city} alt="city" />
+        <BackgroundCity />
         {children}
       </body>
     </html>
