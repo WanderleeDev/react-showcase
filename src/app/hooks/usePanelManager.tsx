@@ -1,8 +1,14 @@
-'use client'
+"use client";
 import { useEffect, useState } from "react";
 import { Panel } from "../shared/interfaces/Panel.interface";
 import numberRandom from "../shared/helpers/numberRandom";
 import { toast } from "sonner";
+
+interface ToastPanelConfig {
+  id: number;
+  quantityPanel: number;
+  totalPanelBroken: number;
+}
 
 export function usePanelManager(quantityPanel: number) {
   const listContentPanels: Panel[] = Array(quantityPanel || 16)
@@ -14,13 +20,15 @@ export function usePanelManager(quantityPanel: number) {
   const [panels, setPanel] = useState<Panel[]>(listContentPanels);
 
   function markPanel(id: number): void {
-    setPanel((prevPanel) => {
-      return prevPanel.map((panel) =>
-        panel.id !== id ? panel : { ...panel, isMark: !panel.isMark }
-      );
-    });
-    
-    toast.warning(`Main System : Panel ${id} is broken`);
+    const dataPanelUpdate = panels.map((panel) =>
+      panel.id !== id ? panel : { ...panel, isMark: true }
+    );
+    const totalPanelBroken = dataPanelUpdate.filter(
+      (panel) => panel.isMark
+    ).length;
+
+    setPanel(dataPanelUpdate);
+    handleMessagePanel({ id, quantityPanel, totalPanelBroken });
   }
 
   function markRandomPanels(max: number): void {
@@ -34,6 +42,23 @@ export function usePanelManager(quantityPanel: number) {
       numbers.push(idRandom);
       markPanel(idRandom);
       counter++;
+    }
+  }
+
+  function handleMessagePanel(config: ToastPanelConfig): void {
+    const { id, quantityPanel, totalPanelBroken } = config;
+
+    toast.warning(`Main System : Panel ${id} is broken`);
+
+    if (totalPanelBroken === Math.ceil(quantityPanel / 2)) {
+      toast.error(
+        `Main System : Half of the panels are broken (${totalPanelBroken})`
+      );
+      return;
+    }
+
+    if (totalPanelBroken === quantityPanel) {
+      toast.error(`Fail System : All panels are broken (${totalPanelBroken})`);
     }
   }
 
