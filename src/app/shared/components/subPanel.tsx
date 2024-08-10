@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
-import myImage from "/public/static.webp";
+import staticImage from "/public/static.webp";
 import { Panel } from "../interfaces/Panel.interface";
 
 interface Props {
@@ -24,10 +25,9 @@ export function SubPanel({ panel, onBreakPanel }: Props) {
       }`}
     >
       {isMark && (
-        // eslint-disable-next-line @next/next/no-img-element
         <img
           className="absolute inset-0 h-full w-full animate-fade-in animate-duration-200"
-          src={myImage.src}
+          src={staticImage.src}
           alt="Descripción de la imagen"
         />
       )}
