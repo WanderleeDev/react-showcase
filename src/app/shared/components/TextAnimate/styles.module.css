@@ -1,0 +1,45 @@
+.intro {
+  color: hsl(0 0% 100% / 0.3);
+  display: grid;
+  gap: 2rem;
+  place-content: center;
+  place-items: center;
+  min-height: 100dvh;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.intro  span {
+  background-image: linear-gradient(90deg, white, white);
+  background-clip: text;
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  animation: reveal-text ease-in-out forwards;
+  animation-timeline: view();
+}
+
+.intro-title span {
+  background-image: linear-gradient(360deg, red, yellow);
+  max-width: 62.5rem;
+  font-size: clamp(1.5rem, 5vw, 4rem);
+  animation-range-start: cover 100px;
+  animation-range-end: cover  300px;
+}
+
+.intro-description span {
+  display: inline;
+  width: 100%;
+  font-size: clamp(1.1rem, 1.8vw, 2.5rem);
+  line-height: 1.7;
+  text-wrap: stable;
+  animation-range-start: cover  170px;
+  animation-range-end: cover  500px;
+}
+
+@keyframes reveal-text {
+  to {
+    perspective: 600px;
+    background-size: 100% 100%;
+    transform: scale(0.8) rotateX(0deg);
+  }
+}

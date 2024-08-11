@@ -9,7 +9,7 @@ export default function BackgroundCity() {
     <>
       <Image className="fixed left-0 h-full -z-10" src={city} alt="city" />
       <Image className="fixed right-0 h-full -z-10" src={city} alt="city" />
-      <Toaster richColors />
+      <Toaster richColors closeButton  theme="system" />
     </>
   );
 }

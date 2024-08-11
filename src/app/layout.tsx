@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Saira_Stencil_One } from "next/font/google";
-import BackgroundCity from "./shared/components/backgroundCity";
+import BackgroundCity from "./shared/components/BackgroundCity";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${saira.className} bg-[#05253E]`}>
+      <body className={`${saira.className} bg-[#05253E] min-h-dvh`}>
         <BackgroundCity />
         {children}
       </body>

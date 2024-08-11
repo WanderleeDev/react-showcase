@@ -3,6 +3,7 @@
   text-align: center;
   font-size: var(--font-xl);
   user-select: none;
+  letter-spacing: .2rem;
 }
 
 .title,
