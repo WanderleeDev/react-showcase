@@ -1,0 +1,40 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-inline: auto;
+  height: 100dvh;
+  gap: 1rem;
+  user-select: none;
+}
+
+.animate-icon {
+  position: fixed;
+  top: 30%;
+  transform: translateY(-50%);
+  animation: fixed-top linear forwards;
+  animation-timeline: scroll();
+  /* animation-range: exit 0% exit-crossing 50%; */
+}
+
+.animate-subContainer {
+  width: fit-content;
+  transform-origin: center;
+  animation: rotateIcon linear forwards;
+  animation-timeline: scroll();
+}
+
+@keyframes fixed-top {
+  100% {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes rotateIcon {
+  to {
+    transform: rotate(360deg);
+  }
+}
