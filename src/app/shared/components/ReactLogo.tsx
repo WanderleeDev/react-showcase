@@ -2,11 +2,13 @@
 import reactIcon from "/public/react.svg";
 
 export default function ReactLogo() {
-  const customClass =
-    "size-28 md:size-36 xl:size-52 p-2 rounded-[50%]";
+  const customClass = "size-28 md:size-36 xl:size-52 p-2 rounded-[50%]";
 
   return (
-    <div className="relative w-fit mx-auto animate-fade-in-up" >
+    <div
+      id="logo"
+      className="relative w-fit mx-auto animate-fade-in-up rounded-[50%]"
+    >
       {Array.from({ length: 2 }).map((_, index) => (
         <img
           fetchPriority="high"

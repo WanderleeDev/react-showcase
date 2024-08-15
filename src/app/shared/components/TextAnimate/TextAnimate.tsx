@@ -8,7 +8,11 @@ interface Props {
 
 export default function TextAnimate({ text, type, customClass }: Props) {
   return (
-    <div className={`${style["animate-container"]} ${customClass}`}>
+    <div
+    id="introduction"
+      className={`${style["animate-container"]} ${customClass} || ''`}
+      data-section="introduction"
+    >
       <p className={style["animate-text"]}>
         <span className={type === "banner" ? "text-font-lg" : "text-base"}>
           {text}

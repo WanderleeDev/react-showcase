@@ -4,15 +4,17 @@ import styles from "./styles.module.css";
 
 export default function Header() {
   return (
-    <header className={styles.header} id="home">
-      <div className={styles['animate-icon']}>
-        <div className={styles['animate-subContainer']}>
-        <ReactLogo />
+    <header id="home" className={styles.header} data-section="home">
+      <div className={styles["animate-icon"]}>
+        <div className={styles["animate-subContainer"]}>
+          <ReactLogo />
         </div>
       </div>
-      <div className="animate-fade-in-up animate-delay-400">
-        <Title title="My React projects" level={1} />
-      </div>
+      <Title
+        customClass="animate-fade-in-up animate-delay-400"
+        title="My React projects"
+        level={1}
+      />
     </header>
   );
 }

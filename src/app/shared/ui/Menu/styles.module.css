@@ -1,3 +1,22 @@
+.menu {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: end;
+  gap: 3rem;
+  bottom: 0;
+  width: 100%;
+  z-index: 50;
+  
+  @media (width > 500px) {
+    height: 100%;
+    transform: translateX(-1rem);
+    bottom: auto;
+    width: fit-content;
+  }
+}
+
 .nav {
   height: fit-content;
   background-color: rgba(218, 218, 218, 0.267);
@@ -8,6 +27,7 @@
   right: 2rem;
   left: 0;
   right: 0;
+  width: 100%;
 
   @media (width > 500px) {
     inset: 2rem auto auto auto;
@@ -36,21 +56,32 @@
   position: relative;
   text-transform: capitalize;
   font-weight: 500;
-  transition: color 0.15s linear;
+  transition: color 0.15s linear, border-color 0.15s linear;
   border: solid 0.15rem #0000003a;
   border-radius: 0.5rem;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.3);
+  
+  &:last-child {
+    &:hover,
+    &:focus-within {
+      border-color: rgba(255, 0, 0, 0.774);
+    }
+  }
 
-  &:hover {
-    color: var(--high-light);
+  &:hover,
+  &:focus-within {
+    color: #ffbb00;
+    border-color: #ffbb00b9;
   }
 
   &:hover::after {
     opacity: 1;
+    color: #fff ;
   }
-
+  
   &::after {
+    color: #fff !important;
     width: max-content;
     position: absolute;
     content: attr(data-link);
@@ -66,6 +97,7 @@
     transform: translate(-50%, -170%);
     opacity: 0;
     transition: opacity 0.2s linear;
+    pointer-events: none;
   }
 
   @media (width > 500px) {

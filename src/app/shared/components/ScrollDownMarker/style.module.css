@@ -1,11 +1,16 @@
 .scrollMarker {
   --arrow-hover-color: #ffbb00;
+  display: none;
+  transition: opacity linear .15s;
+  opacity: 0;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: fit-content;
-  user-select: none;
+  @media (width > 500px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    user-select: none;
+  }
 
   & .scrollMarker-text {
     color: var(--arrow-hover-color);
