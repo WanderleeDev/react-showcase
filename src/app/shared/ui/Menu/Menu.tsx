@@ -1,3 +1,4 @@
+'use client'
 /* eslint-disable @next/next/no-img-element */
 import Home from "../../icons/Home";
 import Project from "../../icons/Project";
@@ -6,14 +7,17 @@ import ScrollDownMarker from "../../components/ScrollDownMarker/ScrollDownMarker
 import ScrollTopButton from "../../components/ScrollTopButton";
 import Angular from "../../icons/Angular";
 import styles from "./styles.module.css";
-import { useIntersectionObserver } from "@/app/hooks/useIntersectionObserver";
+import {
+  CallbackParams,
+  useIntersectionObserver,
+} from "@/app/hooks/useIntersectionObserver";
 
 interface Props {
   customClass?: string;
 }
 
 export default function Menu({ customClass }: Props) {
-  const { isEntry } = useIntersectionObserver('[data-section]', handleObserver);
+  const { isEntry } = useIntersectionObserver("[data-section]", handleObserver);
 
   const navItems = [
     { name: "home", component: <Home /> },
@@ -21,17 +25,28 @@ export default function Menu({ customClass }: Props) {
     { name: "projects", component: <Project /> },
   ];
 
-  function handleObserver() {
-    const navItems = document.querySelectorAll('.menu-item');
-    // console.log(navItems);
-    
+  function handleObserver({ target }: CallbackParams) {
+    if (!target) return;
+
+    const navItems: NodeListOf<HTMLElement> =
+      document.querySelectorAll(".menu-item");
+
+    navItems.forEach((element) => {
+      const match =
+        element.getAttribute("data-link") ===
+        target.getAttribute("data-section");
+
+      if (element.classList.contains("active-link")) return;
+
+      match
+        ? element.classList.add("active-link")
+        : element.classList.remove("active-link");
+    });
   }
 
   return (
     <div className={styles.menu}>
-      <nav
-        className={`${styles["nav"]} ${styles["u-shadow-2"]} ${customClass}`}
-      >
+      <nav className={`${styles["nav"]} ${customClass || ""}`}>
         <ul className={styles["nav-list"]} data-link="home">
           {navItems.map(({ component, name }) => (
             <li

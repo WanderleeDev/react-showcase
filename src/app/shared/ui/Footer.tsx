@@ -1,57 +1,35 @@
 "use client";
 import ListInfo from "../components/ListInfo";
 import Author from "../components/Author";
-import { useIntersectionObserver } from "@/app/hooks/useIntersectionObserver";
-
-interface Props {
-  customStyle: string;
-}
+import {
+  CallbackParams,
+  useIntersectionObserver,
+} from "@/app/hooks/useIntersectionObserver";
+import { socialMedia } from "@/app/data/socialMedia";
+import { otherProjects } from "@/app/data/otherProjects";
 
 export default function Footer() {
   const { isEntry } = useIntersectionObserver("#footer", handleObserver);
-  const socialMedia = [
-    {
-      name: "GitHub",
-      link: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-    },
-    {
-      name: "LinkedIn",
-      link: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-    },
-    {
-      name: "Gmail",
-      link: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-    },
-  ];
-  const others = [
-    {
-      name: "Angular projects",
-      link: "https://entry-page-angular.vercel.app/",
-    },
-    {
-      name: "Ubuntu Desktop",
-      link: "https://wanderlee-porfolio.vercel.app/home",
-    },
-    {
-      name: "My porfolio",
-      link: "https://wanderlee-porfolio-virid.vercel.app/",
-    },
-  ];
+  const social = socialMedia;
+  const others = otherProjects;
 
-  function handleObserver(isIntersecting: boolean): void {
+  function toggleStyles(element: HTMLElement, isEntry: boolean): void {
+    element.style.setProperty("opacity", `${isEntry ? "0" : "1"}`, "important");
+    element.style.pointerEvents = isEntry ? "none" : "auto";
+  }
+
+  function handleObserver({ isIntersecting }: CallbackParams): void {
     const logoElement: HTMLElement | null = document.querySelector("#logo");
     const scrollMarker: HTMLElement | null =
       document.querySelector("#scroll-marker");
     const scrollTopButton: HTMLElement | null =
       document.querySelector("#scrollTop-button");
-    const isOpacity = isIntersecting ? "0" : "1";
 
     if (!logoElement || !scrollMarker || !scrollTopButton) return;
 
-    logoElement.style.setProperty("opacity", isOpacity, "important");
-    scrollMarker.style.opacity = isOpacity;
-    scrollMarker.style.pointerEvents = isIntersecting ? "none" : "auto";
-    scrollTopButton.style.opacity = isIntersecting ? "1" : "0";
+    toggleStyles(scrollMarker, isIntersecting);
+    toggleStyles(scrollTopButton, !isIntersecting);
+    toggleStyles(logoElement, isIntersecting);
   }
 
   return (
@@ -61,8 +39,8 @@ export default function Footer() {
     >
       <div className="flex justify-evenly gap-4 flex-col sm:flex-row">
         <ListInfo dataInfo={others} title="Other projects" />
-        <ListInfo dataInfo={socialMedia} title="My Networks" />
-        <ListInfo dataInfo={socialMedia} title="Contact me" />
+        <ListInfo dataInfo={social} title="My Networks" />
+        <ListInfo dataInfo={social} title="Contact me" />
       </div>
       <Author />
     </footer>

@@ -1,5 +1,6 @@
 import Title from "../typography/Title";
 import { DataLink } from "../interfaces/DataLink.interface";
+import ExternalLink from "../typography/ExternalLink";
 
 interface Props {
   title: string;
@@ -13,14 +14,7 @@ export default function ListInfo({ dataInfo, title }: Props) {
       <ul className="flex flex-wrap gap-3 sm:flex-col">
         {dataInfo.map((data) => (
           <li key={data.name}>
-            <a
-              className="hover:text-[#ffbb00] transition-colors focus-within:text-[#ffbb00] hover:underline"
-              href={data.link}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {data.name}
-            </a>
+            <ExternalLink text={data.name} url={data.link} />
           </li>
         ))}
       </ul>

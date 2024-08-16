@@ -1,18 +1,24 @@
 import { useEffect, useState, useCallback } from "react";
 
+export interface CallbackParams {
+  isIntersecting: boolean;
+  target?: Element;
+}
+
 export function useIntersectionObserver(
   observerId: string,
-  callback: (isIntersecting: boolean) => void,
+  callback: (params: CallbackParams) => void,
   options?: IntersectionObserverInit
 ) {
   const [isEntry, setIsEntry] = useState(false);
   const handleIntersection: IntersectionObserverCallback = useCallback(
     (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
-        console.log(entry.target);
-        
         setIsEntry(() => {
-          callback(entry.isIntersecting);
+          callback({
+            isIntersecting: entry.isIntersecting,
+            target: entry.target,
+          });
           return entry.isIntersecting;
         });
       });

@@ -2,7 +2,7 @@ export default function ScrollTopButton() {
   return (
     <a
       id="scrollTop-button"
-      className="text-black size-10 hidden xs:grid place-content-center bg-[#ffbb00] border-2 rounded-lg border-current hover:text-[#ffbb00] hover:bg-black shadow-sm shadow-current transition-all fixed bottom-20"
+      className="text-[#011722] size-10 hidden xs:grid place-content-center bg-[#ffbb00] border-2 rounded-lg border-current hover:text-[#ffbb00] hover:bg-[#011722] shadow-sm shadow-current transition-all fixed bottom-20 opacity-0"
       href="#home"
       aria-label="go to home"
       title="go to home"

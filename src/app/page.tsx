@@ -1,4 +1,3 @@
-'use client'
 import VideoGrid from "./shared/ui/VideoGrid/VideoGrid";
 import Header from "./shared/ui/Header/Header";
 import TextAnimate from "./shared/components/TextAnimate/TextAnimate";

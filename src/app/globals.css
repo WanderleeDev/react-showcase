@@ -14,26 +14,16 @@
     --font-3xl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
     scroll-behavior: smooth;
   }
-
-  body {
-    scroll-behavior: smooth;
-  }
 }
 
 @layer utilities {
   .radial {
-    background: #061b30;
-    background: radial-gradient(
-      circle,
-      rgba(6, 27, 48, 1) 0%,
-      rgba(15, 80, 136, 1) 35%,
-      rgba(5, 8, 70, 1) 100%
-    );
-    /*
-* Created with https://www.css-gradient.com
-* Gradient link: https://www.css-gradient.com/?c1=0b6580&c2=020921&gt=r&gd=dcc
-*/
     background: #0b6580;
     background: radial-gradient(at center, #0b6580, #020921);
+  }
+
+  .active-link {
+    color: #ffbb00 !important;
+    border-color: #ffbb00b9 !important;
   }
 }
