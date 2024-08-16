@@ -1,4 +1,4 @@
-'use client'
+"use client";
 /* eslint-disable @next/next/no-img-element */
 import Home from "../../icons/Home";
 import Project from "../../icons/Project";
@@ -17,7 +17,11 @@ interface Props {
 }
 
 export default function Menu({ customClass }: Props) {
-  const { isEntry } = useIntersectionObserver("[data-section]", handleObserver);
+  const { isEntry } = useIntersectionObserver(
+    "[data-section]",
+    handleObserver,
+    { threshold: 0.5 }
+  );
 
   const navItems = [
     { name: "home", component: <Home /> },
@@ -25,23 +29,18 @@ export default function Menu({ customClass }: Props) {
     { name: "projects", component: <Project /> },
   ];
 
-  function handleObserver({ target }: CallbackParams) {
-    if (!target) return;
+  function handleObserver({ isIntersecting, target }: CallbackParams) {
+    if (!target || !isIntersecting || target.classList.contains("active-link"))
+      return;
 
-    const navItems: NodeListOf<HTMLElement> =
-      document.querySelectorAll(".menu-item");
+    const currentSection = target.getAttribute("data-section");
+    const activeLink = document.querySelector(".menu-item.active-link");
+    const newActiveLink = document.querySelector(
+      `.menu-item[data-link="${currentSection}"]`
+    );
 
-    navItems.forEach((element) => {
-      const match =
-        element.getAttribute("data-link") ===
-        target.getAttribute("data-section");
-
-      if (element.classList.contains("active-link")) return;
-
-      match
-        ? element.classList.add("active-link")
-        : element.classList.remove("active-link");
-    });
+    if (activeLink) activeLink.classList.remove("active-link");
+    if (newActiveLink) newActiveLink.classList.add("active-link");
   }
 
   return (
