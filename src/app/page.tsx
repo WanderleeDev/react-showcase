@@ -4,7 +4,7 @@ import TextAnimate from "./shared/components/TextAnimate/TextAnimate";
 import Menu from "./shared/ui/Menu/Menu";
 import Footer from "./shared/ui/Footer";
 
-export default function Home() {
+export default async function Home() {
   const containerClass =
     "text-slate-100 grid grid-cols-1 gap-8 min-h-dvh max-w-7xl mx-auto border-x-4 border-dashed bg-[#011722] pt-4 h-full w-full";
   const presentation =
@@ -19,7 +19,11 @@ export default function Home() {
         text={presentation}
         type="banner"
       />
-      <div id="projects" className="min-h-dvh content-center" data-section="projects">
+      <div
+        id="projects"
+        className="min-h-dvh content-center"
+        data-section="projects"
+      >
         <VideoGrid />
       </div>
       <Footer />

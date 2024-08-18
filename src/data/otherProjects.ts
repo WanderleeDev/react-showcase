@@ -1,4 +1,4 @@
-import { DataLink } from "../shared/interfaces/DataLink.interface";
+import { DataLink } from "../app/shared/interfaces/DataLink.interface";
 
 export const otherProjects: DataLink[] = [
   {

@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
-import { Panel } from "../shared/interfaces/Panel.interface";
-import numberRandom from "../shared/helpers/numberRandom";
+import { Panel } from "@/app/shared/interfaces/Panel.interface";
+import numberRandom from "@/app/shared/helpers/numberRandom";
 import { toast } from "sonner";
 
 interface ToastPanelConfig {

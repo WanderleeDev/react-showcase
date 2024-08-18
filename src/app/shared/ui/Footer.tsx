@@ -1,12 +1,9 @@
 "use client";
 import ListInfo from "../components/ListInfo";
 import Author from "../components/Author";
-import {
-  CallbackParams,
-  useIntersectionObserver,
-} from "@/app/hooks/useIntersectionObserver";
-import { socialMedia } from "@/app/data/socialMedia";
-import { otherProjects } from "@/app/data/otherProjects";
+import { CallbackParams, useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { socialMedia } from "@/data/socialMedia";
+import { otherProjects } from "@/data/otherProjects";
 
 export default function Footer() {
   const { isEntry } = useIntersectionObserver("#footer", handleObserver);

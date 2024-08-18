@@ -1,7 +1,7 @@
 import { Saira_Stencil_One } from "next/font/google";
 import BackgroundCity from "./shared/components/BackgroundCity";
 import "./globals.css";
-import { METADATA_PAGE } from "./config/MetaConfig";
+import { METADATA_PAGE } from "@/config/MetaConfig";
 
 const saira = Saira_Stencil_One({ subsets: ["latin"], weight: "400" });
 

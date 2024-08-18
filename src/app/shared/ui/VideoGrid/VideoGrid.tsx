@@ -1,6 +1,6 @@
 "use client";
 import { SubPanel } from "../../components/SubPanel";
-import { usePanelManager } from "@/app/hooks/usePanelManager";
+import { usePanelManager } from "@/hooks/usePanelManager";
 import Image from "next/image";
 import reactBanner from "/public/react-banner.webp";
 import PanelGlitch from "../PanelGlitch";

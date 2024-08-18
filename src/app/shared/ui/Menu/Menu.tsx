@@ -7,10 +7,7 @@ import ScrollDownMarker from "../../components/ScrollDownMarker/ScrollDownMarker
 import ScrollTopButton from "../../components/ScrollTopButton";
 import Angular from "../../icons/Angular";
 import styles from "./styles.module.css";
-import {
-  CallbackParams,
-  useIntersectionObserver,
-} from "@/app/hooks/useIntersectionObserver";
+import { CallbackParams, useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 interface Props {
   customClass?: string;
